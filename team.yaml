@@ -4,6 +4,7 @@ team:
     Coordinate specialist agents that can clarify goals, research options, design solutions,
     implement changes, and review outcomes.
   default_workflow: workflows/default-cycle.md
+  learning_workflow: workflows/learning-cycle.md
   memory:
     overview: memory/README.md
     schema: memory/schema.yaml
@@ -39,6 +40,7 @@ agents:
     hands_off_to:
       - product-strategist
       - research-analyst
+      - learning-coach
       - solution-architect
       - implementation-engineer
       - qa-reviewer
@@ -67,7 +69,22 @@ agents:
       - Separate facts from assumptions and recommendations.
     hands_off_to:
       - product-strategist
+      - learning-coach
       - solution-architect
+
+  - id: learning-coach
+    name: Learning Coach
+    type: education
+    profile: agents/learning-coach.md
+    memory: memory/agents/learning-coach.md
+    responsibilities:
+      - Diagnose the learner's background, goal, and desired depth.
+      - Teach from first principles with concrete examples and multiple representations.
+      - Use active checks, exercises, and misconception repair to build durable understanding.
+      - Hand off source-backed research needs to Research Analyst when canonical references are required.
+    hands_off_to:
+      - research-analyst
+      - orchestrator
 
   - id: solution-architect
     name: Solution Architect

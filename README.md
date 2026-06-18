@@ -13,6 +13,7 @@ CrewAI, AutoGen, or a custom runner.
 | Lead Orchestrator | Breaks goals into work, routes tasks, and keeps decisions moving. | [agents/orchestrator.md](agents/orchestrator.md) |
 | Product Strategist | Clarifies user needs, scope, tradeoffs, and success criteria. | [agents/product-strategist.md](agents/product-strategist.md) |
 | Research Analyst | Finds reliable information, compares options, and records sources. | [agents/research-analyst.md](agents/research-analyst.md) |
+| Learning Coach | Teaches topics from first principles and checks for durable understanding. | [agents/learning-coach.md](agents/learning-coach.md) |
 | Solution Architect | Designs the technical approach and integration plan. | [agents/solution-architect.md](agents/solution-architect.md) |
 | Implementation Engineer | Builds the requested changes with tests and practical documentation. | [agents/implementation-engineer.md](agents/implementation-engineer.md) |
 | QA Reviewer | Reviews correctness, risks, edge cases, and release readiness. | [agents/qa-reviewer.md](agents/qa-reviewer.md) |
@@ -29,6 +30,9 @@ Start with the [default delivery workflow](workflows/default-cycle.md):
 6. Implementation Engineer makes the change.
 7. QA Reviewer checks the result against the acceptance criteria.
 8. Lead Orchestrator summarizes what changed, what was verified, and what memory should be updated.
+
+For learning goals, use the [learning cycle](workflows/learning-cycle.md). It routes the topic
+through diagnosis, first-principles teaching, active checks, practice, and memory updates.
 
 ## Memory
 
@@ -55,4 +59,23 @@ Example task prompt:
 Use the AgentTeam workflow. Goal: add GitHub issue templates to this repo.
 Lead Orchestrator should coordinate, Product Strategist should define the templates,
 Implementation Engineer should create them, and QA Reviewer should review the final files.
+```
+
+Learning prompt:
+
+```text
+Use the AgentTeam Learning Coach.
+
+Topic:
+I want to understand distributed systems from the ground up.
+
+Goal:
+Build a durable mental model, not just a summary.
+
+Output:
+- First-principles explanation
+- Simple worked example
+- Common failure modes
+- One exercise
+- Check question before moving on
 ```

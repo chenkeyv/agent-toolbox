@@ -26,5 +26,16 @@ Stable knowledge about this repository and agent team.
   tags:
     - memory
     - repo-convention
-```
 
+- id: project-003
+  scope: project
+  owner: learning-coach
+  content: "Learning Coach was adapted from the user's previous Claude master-teacher agent while removing Claude-specific runtime details."
+  source: "/Users/keyv/.claude/agents/master-teacher.md"
+  confidence: high
+  updated_at: 2026-06-18
+  expires_at: null
+  tags:
+    - learning-coach
+    - agent-origin
+```

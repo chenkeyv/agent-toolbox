@@ -8,7 +8,7 @@ Agent memory files:
 - [orchestrator.md](orchestrator.md)
 - [product-strategist.md](product-strategist.md)
 - [research-analyst.md](research-analyst.md)
+- [learning-coach.md](learning-coach.md)
 - [solution-architect.md](solution-architect.md)
 - [implementation-engineer.md](implementation-engineer.md)
 - [qa-reviewer.md](qa-reviewer.md)
-
