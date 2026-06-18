@@ -4,12 +4,33 @@ team:
     Coordinate specialist agents that can clarify goals, research options, design solutions,
     implement changes, and review outcomes.
   default_workflow: workflows/default-cycle.md
+  memory:
+    overview: memory/README.md
+    schema: memory/schema.yaml
+    stores:
+      project: memory/project.md
+      user_preferences: memory/user-preferences.md
+      research: memory/research.md
+      agent_specific: memory/agents/
+    read_priority:
+      - Current user instructions
+      - Current repository files
+      - Fresh source-backed research
+      - User preference memory
+      - Project memory
+      - Agent-specific memory
+    write_policy:
+      - Store only information that is reusable beyond the current task.
+      - Include source, confidence, owner, and updated date.
+      - Do not store secrets, credentials, or sensitive personal data.
+      - Expire or revise memory when facts may change.
 
 agents:
   - id: orchestrator
     name: Lead Orchestrator
     type: coordinator
     profile: agents/orchestrator.md
+    memory: memory/agents/orchestrator.md
     responsibilities:
       - Clarify the goal and expected output.
       - Select the right specialist agents for the task.
@@ -26,6 +47,7 @@ agents:
     name: Product Strategist
     type: planning
     profile: agents/product-strategist.md
+    memory: memory/agents/product-strategist.md
     responsibilities:
       - Identify the user, problem, and desired outcome.
       - Define scope, non-goals, and acceptance criteria.
@@ -38,6 +60,7 @@ agents:
     name: Research Analyst
     type: research
     profile: agents/research-analyst.md
+    memory: memory/agents/research-analyst.md
     responsibilities:
       - Gather reliable and current information.
       - Compare options with sources and confidence levels.
@@ -50,6 +73,7 @@ agents:
     name: Solution Architect
     type: design
     profile: agents/solution-architect.md
+    memory: memory/agents/solution-architect.md
     responsibilities:
       - Design the technical approach.
       - Identify interfaces, dependencies, tradeoffs, and risks.
@@ -62,6 +86,7 @@ agents:
     name: Implementation Engineer
     type: builder
     profile: agents/implementation-engineer.md
+    memory: memory/agents/implementation-engineer.md
     responsibilities:
       - Modify files, write code, and keep changes scoped.
       - Add or update tests when risk justifies it.
@@ -73,10 +98,10 @@ agents:
     name: QA Reviewer
     type: review
     profile: agents/qa-reviewer.md
+    memory: memory/agents/qa-reviewer.md
     responsibilities:
       - Review outputs for correctness, regressions, and missing tests.
       - Check work against acceptance criteria.
       - Report release risks and recommended fixes.
     hands_off_to:
       - orchestrator
-

@@ -1,0 +1,99 @@
+version: 1
+description: Schema guidance for AgentTeam memory entries.
+
+entry:
+  required_fields:
+    - id
+    - scope
+    - owner
+    - content
+    - source
+    - confidence
+    - updated_at
+    - tags
+  optional_fields:
+    - expires_at
+    - related_files
+    - supersedes
+    - status
+    - notes
+
+fields:
+  id:
+    type: string
+    description: Stable unique identifier, such as mem-001 or research-openai-001.
+  scope:
+    type: enum
+    values:
+      - working
+      - project
+      - agent
+      - research
+      - user-preference
+    description: Memory category and expected lifetime.
+  owner:
+    type: string
+    description: Agent id responsible for the memory entry.
+  content:
+    type: string
+    description: Concrete reusable memory. Keep it short and actionable.
+  source:
+    type: string
+    description: User statement, file path, source URL, commit, or decision note that supports the memory.
+  confidence:
+    type: enum
+    values:
+      - low
+      - medium
+      - high
+    description: Confidence in the memory entry.
+  updated_at:
+    type: date
+    description: Date the entry was created or last updated, in YYYY-MM-DD format.
+  expires_at:
+    type:
+      - date
+      - "null"
+    description: Date to re-check the entry. Use null only for stable repo conventions or durable preferences.
+  tags:
+    type: array
+    items: string
+    description: Searchable labels.
+  related_files:
+    type: array
+    items: string
+    description: Repo files related to the memory entry.
+  supersedes:
+    type: array
+    items: string
+    description: Prior memory ids replaced by this entry.
+  status:
+    type: enum
+    values:
+      - active
+      - stale
+      - superseded
+      - rejected
+    description: Lifecycle state for the entry.
+  notes:
+    type: string
+    description: Optional context that does not belong in the main content.
+
+policies:
+  priority_order:
+    - Current user instructions
+    - Current repository files
+    - Fresh source-backed research
+    - User preference memory
+    - Project memory
+    - Agent-specific memory
+  never_store:
+    - Secrets, credentials, API keys, tokens, passwords, or private keys.
+    - Sensitive personal data that is not explicitly needed for the project.
+    - Hidden chain-of-thought or private reasoning traces.
+    - Unverified sensitive claims about people or organizations.
+  update_rules:
+    - Store information only if it is reusable beyond the current task.
+    - Include an expiry date for facts likely to change.
+    - Revise or supersede stale entries instead of duplicating them.
+    - Keep entries concise enough for agents to retrieve and use quickly.

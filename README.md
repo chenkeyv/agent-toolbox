@@ -22,18 +22,32 @@ CrewAI, AutoGen, or a custom runner.
 Start with the [default delivery workflow](workflows/default-cycle.md):
 
 1. The Lead Orchestrator restates the goal and selects the needed agents.
-2. Product Strategist defines the target outcome and acceptance criteria.
-3. Research Analyst gathers current facts when the work depends on external knowledge.
-4. Solution Architect proposes a design and calls out key tradeoffs.
-5. Implementation Engineer makes the change.
-6. QA Reviewer checks the result against the acceptance criteria.
-7. Lead Orchestrator summarizes what changed, what was verified, and what remains.
+2. Agents load relevant memory from the [memory folder](memory/README.md).
+3. Product Strategist defines the target outcome and acceptance criteria.
+4. Research Analyst gathers current facts when the work depends on external knowledge.
+5. Solution Architect proposes a design and calls out key tradeoffs.
+6. Implementation Engineer makes the change.
+7. QA Reviewer checks the result against the acceptance criteria.
+8. Lead Orchestrator summarizes what changed, what was verified, and what memory should be updated.
+
+## Memory
+
+AgentTeam uses explicit file-based memory so the team can learn without hiding state.
+
+- Project memory: [memory/project.md](memory/project.md)
+- User preference memory: [memory/user-preferences.md](memory/user-preferences.md)
+- Research memory: [memory/research.md](memory/research.md)
+- Agent-specific memory: [memory/agents/](memory/agents/)
+- Memory schema: [memory/schema.yaml](memory/schema.yaml)
+
+Read memory as context, not truth. Current user instructions, current files, and fresh source-backed
+facts always take priority over older memory.
 
 ## How To Use
 
 Copy the relevant agent profile into your agent runtime as the system or role instruction.
-For multi-agent workflows, use `team.yaml` as the routing map and `workflows/default-cycle.md`
-as the shared process.
+For multi-agent workflows, use `team.yaml` as the routing map, `memory/` as the shared
+memory store, and `workflows/default-cycle.md` as the shared process.
 
 Example task prompt:
 
@@ -42,4 +56,3 @@ Use the AgentTeam workflow. Goal: add GitHub issue templates to this repo.
 Lead Orchestrator should coordinate, Product Strategist should define the templates,
 Implementation Engineer should create them, and QA Reviewer should review the final files.
 ```
-

@@ -17,7 +17,22 @@ Output:
 - Agent assignment list.
 - Initial plan.
 
-## 2. Product Framing
+## 2. Memory Load
+
+Owner: Lead Orchestrator and assigned specialists
+
+- Read only memory relevant to the current task.
+- Treat current user instructions and current files as higher priority than memory.
+- Note memory that appears stale, contradictory, or unsupported.
+- Decide whether the task needs new memory entries at delivery time.
+
+Output:
+
+- Relevant memory notes.
+- Stale or conflicting memory warnings.
+- Memory update candidates.
+
+## 3. Product Framing
 
 Owner: Product Strategist
 
@@ -32,7 +47,7 @@ Output:
 - Acceptance criteria.
 - Scope notes.
 
-## 3. Research
+## 4. Research
 
 Owner: Research Analyst
 
@@ -48,7 +63,7 @@ Output:
 - Sources.
 - Recommendation.
 
-## 4. Design
+## 5. Design
 
 Owner: Solution Architect
 
@@ -63,7 +78,7 @@ Output:
 - Implementation plan.
 - Verification plan.
 
-## 5. Build
+## 6. Build
 
 Owner: Implementation Engineer
 
@@ -78,7 +93,7 @@ Output:
 - Test results.
 - Notes for review.
 
-## 6. Review
+## 7. Review
 
 Owner: QA Reviewer
 
@@ -92,15 +107,27 @@ Output:
 - Required fixes or release recommendation.
 - Residual risks.
 
-## 7. Delivery
+## 8. Memory Update
+
+Owner: Lead Orchestrator and relevant specialist
+
+- Add or revise memory only when the information is reusable beyond the current task.
+- Include source, confidence, owner, and updated date.
+- Prefer updating an existing entry over creating a duplicate.
+- Do not store secrets, credentials, or sensitive personal data.
+
+Output:
+
+- Memory entries added, updated, expired, or intentionally skipped.
+
+## 9. Delivery
 
 Owner: Lead Orchestrator
 
 - Summarize what changed.
 - Report verification performed.
-- Name any limitations or follow-up work.
+- Name memory updates, limitations, and follow-up work.
 
 Output:
 
 - Final delivery summary.
-
