@@ -53,6 +53,9 @@ Copy the relevant agent profile into your agent runtime as the system or role in
 For multi-agent workflows, use `team.yaml` as the routing map, `memory/` as the shared
 memory store, and `workflows/default-cycle.md` as the shared process.
 
+To install AgentTeam into another repository as a hidden, updateable submodule, see
+[docs/setup.md](docs/setup.md).
+
 Example task prompt:
 
 ```text
