@@ -1,0 +1,11 @@
+.DS_Store
+.env
+.env.*
+node_modules/
+.venv/
+__pycache__/
+dist/
+build/
+coverage/
+.agents/tmp/
+

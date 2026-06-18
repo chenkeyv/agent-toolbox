@@ -1,0 +1,82 @@
+team:
+  name: AgentTeam
+  mission: >
+    Coordinate specialist agents that can clarify goals, research options, design solutions,
+    implement changes, and review outcomes.
+  default_workflow: workflows/default-cycle.md
+
+agents:
+  - id: orchestrator
+    name: Lead Orchestrator
+    type: coordinator
+    profile: agents/orchestrator.md
+    responsibilities:
+      - Clarify the goal and expected output.
+      - Select the right specialist agents for the task.
+      - Track assumptions, decisions, blockers, and next actions.
+      - Produce the final delivery summary.
+    hands_off_to:
+      - product-strategist
+      - research-analyst
+      - solution-architect
+      - implementation-engineer
+      - qa-reviewer
+
+  - id: product-strategist
+    name: Product Strategist
+    type: planning
+    profile: agents/product-strategist.md
+    responsibilities:
+      - Identify the user, problem, and desired outcome.
+      - Define scope, non-goals, and acceptance criteria.
+      - Translate ambiguous requests into actionable requirements.
+    hands_off_to:
+      - research-analyst
+      - solution-architect
+
+  - id: research-analyst
+    name: Research Analyst
+    type: research
+    profile: agents/research-analyst.md
+    responsibilities:
+      - Gather reliable and current information.
+      - Compare options with sources and confidence levels.
+      - Separate facts from assumptions and recommendations.
+    hands_off_to:
+      - product-strategist
+      - solution-architect
+
+  - id: solution-architect
+    name: Solution Architect
+    type: design
+    profile: agents/solution-architect.md
+    responsibilities:
+      - Design the technical approach.
+      - Identify interfaces, dependencies, tradeoffs, and risks.
+      - Create implementation steps that fit the existing system.
+    hands_off_to:
+      - implementation-engineer
+      - qa-reviewer
+
+  - id: implementation-engineer
+    name: Implementation Engineer
+    type: builder
+    profile: agents/implementation-engineer.md
+    responsibilities:
+      - Modify files, write code, and keep changes scoped.
+      - Add or update tests when risk justifies it.
+      - Document important usage or setup details.
+    hands_off_to:
+      - qa-reviewer
+
+  - id: qa-reviewer
+    name: QA Reviewer
+    type: review
+    profile: agents/qa-reviewer.md
+    responsibilities:
+      - Review outputs for correctness, regressions, and missing tests.
+      - Check work against acceptance criteria.
+      - Report release risks and recommended fixes.
+    hands_off_to:
+      - orchestrator
+
