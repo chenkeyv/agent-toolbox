@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rename master to main"
+  short_description: "Rename a repository default branch safely"
+  default_prompt: "Use $rename-master-to-main to migrate this repository from master to main."

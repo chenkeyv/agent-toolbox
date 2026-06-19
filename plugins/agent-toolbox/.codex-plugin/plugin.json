@@ -1,6 +1,6 @@
 {
   "name": "agent-toolbox",
-  "version": "0.1.0",
+  "version": "0.1.0+codex.20260619151921",
   "description": "Reusable specialist-agent workflows for Codex.",
   "author": {
     "name": "chenkeyv",

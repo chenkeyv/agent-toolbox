@@ -16,7 +16,7 @@ OpenAI Agents SDK, CrewAI, AutoGen, or a custom runner.
 | Path | Purpose |
 | --- | --- |
 | `.codex-plugin/plugin.json` | Codex plugin manifest. |
-| `skills/agent-toolbox/SKILL.md` | Codex skill entrypoint. |
+| `skills/` | Codex skill entrypoints bundled with this plugin. |
 | `agents/` | Framework-neutral Markdown agent profiles. |
 | `workflows/` | Reusable handoff and delivery workflows. |
 | `memory/` | Reusable memory templates and schema, not project checkpoints. |
@@ -24,6 +24,13 @@ OpenAI Agents SDK, CrewAI, AutoGen, or a custom runner.
 | `mcp/` | Token-free MCP examples and config snippets. |
 | `subagents/` | Codex subagent role configs and notes. |
 | `docs/` | Setup and operating guides. |
+
+## Bundled Skills
+
+| Skill | Purpose |
+| --- | --- |
+| `agent-toolbox` | Load the reusable specialist-agent team and workflows. |
+| `rename-master-to-main` | Safely migrate a Git repository default branch from `master` to `main`. |
 
 ## Team Roster
 
