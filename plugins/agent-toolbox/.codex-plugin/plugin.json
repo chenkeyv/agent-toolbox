@@ -1,0 +1,32 @@
+{
+  "name": "agent-toolbox",
+  "version": "0.1.0",
+  "description": "Reusable specialist-agent workflows for Codex.",
+  "author": {
+    "name": "chenkeyv",
+    "url": "https://github.com/chenkeyv"
+  },
+  "repository": "https://github.com/chenkeyv/agent-toolbox",
+  "keywords": [
+    "agents",
+    "codex",
+    "skills",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Toolbox",
+    "shortDescription": "Reusable specialist-agent workflows for Codex.",
+    "longDescription": "Agent Toolbox packages a reusable team of specialist agent profiles, delivery workflows, learning workflows, and memory templates as an installable Codex plugin.",
+    "developerName": "chenkeyv",
+    "category": "Productivity",
+    "capabilities": [
+      "Skills"
+    ],
+    "defaultPrompt": [
+      "Use Agent Toolbox to plan, build, and review this task.",
+      "Use Agent Toolbox Learning Coach for this topic.",
+      "Use Agent Toolbox to compare options and recommend a path."
+    ]
+  }
+}

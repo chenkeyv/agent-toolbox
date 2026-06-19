@@ -2,8 +2,8 @@
 
 Installable Codex plugin bundles live here.
 
-Use a plugin when a workflow should be shared or installed as a bundle of
-skills, MCP configuration, app integrations, hooks, or assets.
+`agent-toolbox/` is the primary package exposed by the root marketplace at
+`.agents/plugins/marketplace.json`.
 
 Each plugin should have its own manifest:
 
