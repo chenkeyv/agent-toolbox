@@ -1,5 +1,5 @@
 version: 1
-description: Schema guidance for AgentTeam memory entries.
+description: Schema guidance for Agent Toolbox memory entries.
 
 entry:
   required_fields:

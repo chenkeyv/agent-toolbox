@@ -1,6 +1,6 @@
 # Memory
 
-AgentTeam memory is explicit, file-based, and reviewable. Agents may use it as context, but
+Agent Toolbox memory is explicit, file-based, and reviewable. Agents may use it as context, but
 must not treat it as more authoritative than the current user request, current project files,
 or fresh source-backed facts.
 

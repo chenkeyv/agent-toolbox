@@ -1,10 +1,29 @@
-# AgentTeam
+# Agent Toolbox
 
-A starter agent team for turning ideas into researched, designed, implemented, and reviewed work.
+Reusable agent tooling for turning ideas into researched, designed, implemented, reviewed,
+and teachable work.
 
-This repo is framework-neutral on purpose. The agent profiles are plain Markdown, and `team.yaml`
-provides a lightweight structured index that can later be used by Codex, the OpenAI Agents SDK,
-CrewAI, AutoGen, or a custom runner.
+This repo is private by default because it can contain personal workflows, memory templates,
+prompt routines, and integration examples. Keep secrets and project-owned checkpoints outside
+this repo.
+
+The core agent profiles are framework-neutral on purpose. They are plain Markdown, and
+`team.yaml` provides a lightweight structured index that can later be used by Codex, the
+OpenAI Agents SDK, CrewAI, AutoGen, or a custom runner.
+
+## Repository Layout
+
+| Path | Purpose |
+| --- | --- |
+| `agents/` | Framework-neutral Markdown agent profiles. |
+| `workflows/` | Reusable handoff and delivery workflows. |
+| `memory/` | Reusable memory templates and schema, not project checkpoints. |
+| `skills/` | Codex skills with `SKILL.md`, references, and scripts. |
+| `plugins/` | Installable Codex plugin bundles. |
+| `prompts/` | Reusable prompt templates. |
+| `mcp/` | Token-free MCP examples and config snippets. |
+| `subagents/` | Codex subagent role configs and notes. |
+| `docs/` | Setup and operating guides. |
 
 ## Team Roster
 
@@ -36,7 +55,7 @@ through diagnosis, first-principles teaching, active checks, practice, and memor
 
 ## Memory
 
-AgentTeam uses explicit file-based memory so the team can learn without hiding state.
+Agent Toolbox uses explicit file-based memory so the team can learn without hiding state.
 
 - Project memory: [memory/project.md](memory/project.md)
 - User preference memory: [memory/user-preferences.md](memory/user-preferences.md)
@@ -53,13 +72,13 @@ Copy the relevant agent profile into your agent runtime as the system or role in
 For multi-agent workflows, use `team.yaml` as the routing map, `memory/` as the shared
 memory store, and `workflows/default-cycle.md` as the shared process.
 
-To install AgentTeam into another repository as a hidden, updateable submodule, see
+To install Agent Toolbox into another repository as a hidden, updateable submodule, see
 [docs/setup.md](docs/setup.md).
 
 Example task prompt:
 
 ```text
-Use the AgentTeam workflow. Goal: add GitHub issue templates to this repo.
+Use the Agent Toolbox workflow. Goal: add GitHub issue templates to this repo.
 Lead Orchestrator should coordinate, Product Strategist should define the templates,
 Implementation Engineer should create them, and QA Reviewer should review the final files.
 ```
@@ -67,7 +86,7 @@ Implementation Engineer should create them, and QA Reviewer should review the fi
 Learning prompt:
 
 ```text
-Use the AgentTeam Learning Coach.
+Use the Agent Toolbox Learning Coach.
 
 Topic:
 I want to understand distributed systems from the ground up.

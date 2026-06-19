@@ -6,7 +6,7 @@ Stable knowledge about this repository and agent team.
 - id: project-001
   scope: project
   owner: orchestrator
-  content: "AgentTeam is framework-neutral: agent profiles are Markdown, workflows are Markdown, and team metadata is YAML."
+  content: "Agent Toolbox is framework-neutral: agent profiles are Markdown, workflows are Markdown, and team metadata is YAML."
   source: "README.md and team.yaml"
   confidence: high
   updated_at: 2026-06-18
