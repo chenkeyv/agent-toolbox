@@ -30,6 +30,7 @@ OpenAI Agents SDK, CrewAI, AutoGen, or a custom runner.
 | Skill | Purpose |
 | --- | --- |
 | `agent-toolbox` | Load the reusable specialist-agent team and workflows. |
+| `karpathy-guidelines` | Apply compact coding-agent guardrails for simple, surgical, verified changes. |
 | `rename-master-to-main` | Safely migrate a Git repository default branch from `master` to `main`. |
 
 ## Team Roster
