@@ -34,6 +34,12 @@ repository files, and fresh source-backed facts take precedence. Keep project-sp
 local preferences, secrets, credentials, and private notes in the project using the plugin, not in
 Agent Toolbox.
 
+## Commit Rules
+
+When creating commits while using Agent Toolbox, use Conventional Commits. Wrap every commit message
+line, including the subject and body, at 120 characters or less. Do not embed literal `\n` escape
+sequences in commit message arguments; use separate `-m` flags for subject and body paragraphs.
+
 ## Delivery
 
 When responding, summarize the selected workflow, the specialists used, the concrete result, and
