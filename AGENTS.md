@@ -20,4 +20,7 @@ When changing this repo:
 - Avoid binding the repo to one agent framework unless that framework is intentionally added.
 - Keep project-specific checkpoints in the project that uses the plugin, not in this repo.
 - Update `plugins/agent-toolbox/README.md`, `plugins/agent-toolbox/team.yaml`, and `plugins/agent-toolbox/memory/agents/` whenever the roster changes.
+- Use Conventional Commits for Git commit subjects (`type(scope): subject`).
+- For multi-line commit messages, use separate `-m` flags or a commit message
+  file instead of escaped `\n` in a single `-m` argument.
 - Run plugin validation before committing package changes.
