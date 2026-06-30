@@ -31,7 +31,8 @@ For projects that should use Agent Toolbox, add a root `AGENTS.md` like this:
 ```md
 # Codex Project Instructions
 
-## Repository Context
+<!-- agent-toolbox:start -->
+## Agent Toolbox Setup
 
 - This repository uses the installed Agent Toolbox Codex plugin.
 - When the user asks to use Agent Toolbox, use the installed plugin skill and follow its bundled team/workflow files.
@@ -40,12 +41,41 @@ For projects that should use Agent Toolbox, add a root `AGENTS.md` like this:
 
 ## Working Rules
 
+- Start by inspecting `git status --short --branch` and existing project instructions before changing files.
+- Keep edits scoped to the requested setup and preserve unrelated local changes.
+- Back conclusions, recommendations, and summaries with real evidence such as
+  file references, command output, tests, source links, or measured data.
+- Clearly label assumptions when evidence is unavailable.
 - Do not vendor or clone Agent Toolbox into this repository unless plugin installation is unavailable.
 - Store durable project memory in a project-owned path such as `learning/<topic>.md`, `docs/agent-memory.md`, or `.agent-memory/project.md`.
+- Keep local agent assets as project-owned files under `.agents/` unless the user explicitly asks for an external Git submodule.
 - Avoid committing secrets, credentials, OAuth state, or machine-local configuration.
+- Use Conventional Commits for Git commit subjects (`type(scope): subject`).
+- Keep Git commit message lines wrapped at 72 characters when practical.
+- For multi-paragraph commit messages, use separate `-m` flags or a commit
+  message file instead of escaped `\n` in a single `-m`.
+- Run the most relevant validation after setup changes and report any checks that were skipped.
+<!-- agent-toolbox:end -->
+
+## Project-Specific Rules
+
+- Add repository-specific build, test, lint, release, and ownership rules here.
 ```
 
 Codex discovers root `AGENTS.md` automatically when it works in the target repository.
+
+## Refresh Existing Projects
+
+For existing projects, refresh only the content between:
+
+```md
+<!-- agent-toolbox:start -->
+<!-- agent-toolbox:end -->
+```
+
+If a project does not have those markers yet, add them around the existing Agent Toolbox section
+when one is clear. Otherwise add one managed block without rewriting project-specific rules. A
+second refresh should produce no diff unless the template changed.
 
 ## Use The Team
 

@@ -30,7 +30,7 @@ load the bundled skill.
 | `.agents/plugins/marketplace.json` | Marketplace catalog that exposes the plugin. |
 | `plugins/agent-toolbox/` | Installable Codex plugin package. |
 | `plugins/agent-toolbox/.codex-plugin/plugin.json` | Plugin manifest. |
-| `plugins/agent-toolbox/skills/agent-toolbox/SKILL.md` | Codex skill entrypoint. |
+| `plugins/agent-toolbox/skills/` | Codex skill entrypoints. |
 | `plugins/agent-toolbox/agents/` | Framework-neutral Markdown agent profiles. |
 | `plugins/agent-toolbox/workflows/` | Reusable handoff and delivery workflows. |
 | `plugins/agent-toolbox/memory/` | Reusable memory templates and schema, not project checkpoints. |

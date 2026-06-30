@@ -23,3 +23,4 @@ to the skill instead of expanding `SKILL.md` unnecessarily.
 | `agent-toolbox` | Load the reusable specialist-agent team and workflows. |
 | `karpathy-guidelines` | Apply compact coding-agent guardrails for simple, surgical, verified changes. |
 | `rename-master-to-main` | Safely migrate a Git repository default branch from `master` to `main`. |
+| `setup-agent-project` | Configure repositories for Agent Toolbox and project-owned agent workflows. |
