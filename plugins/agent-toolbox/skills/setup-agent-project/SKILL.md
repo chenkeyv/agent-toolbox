@@ -138,16 +138,25 @@ Use this as a starting point, then tailor it to the target project:
 
 - Start by inspecting `git status --short --branch` and existing project instructions before changing files.
 - Keep edits scoped to the requested setup and preserve unrelated local changes.
-- Back conclusions, recommendations, and summaries with real evidence such as
-  file references, command output, tests, source links, or measured data.
+- Back every conclusion, recommendation, and summary with real evidence such as
+  file references, command output, tests, experiments, source links, or
+  measured data.
 - Clearly label assumptions when evidence is unavailable.
 - Do not commit secrets, credentials, OAuth state, or machine-local configuration.
 - Do not vendor or clone reusable agent tooling into this repository unless plugin installation is unavailable or the user explicitly wants local assets.
 - Keep local agent assets as project-owned files under `.agents/` unless the user explicitly asks for an external Git submodule.
-- Use Conventional Commits for Git commit subjects (`type(scope): subject`).
+- Add or update tests with every change. If a test cannot be added, state the
+  reason and what validation was run instead.
+- When tests fail, identify the root cause before changing or dismissing the
+  result, even if the failing case appears unrelated.
+- When creating or amending Git commits, use Conventional Commits format
+  (`type(scope): subject`).
+- Split large or logically separate changes into multiple commits when that
+  makes review or rollback clearer.
 - Keep Git commit message lines wrapped at 72 characters when practical.
-- For multi-paragraph commit messages, use separate `-m` flags or a commit
-  message file instead of escaped `\n` in a single `-m`.
+- For multi-line or multi-paragraph commit messages, preserve line breaks with
+  separate `-m` flags or a commit message file instead of escaped `\n` in a
+  single `-m` argument.
 - Run the most relevant validation after setup changes and report any checks that were skipped.
 <!-- agent-toolbox:end -->
 
