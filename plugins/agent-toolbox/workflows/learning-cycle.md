@@ -54,11 +54,16 @@ Owner: Learning Coach
 - Add complexity one layer at a time.
 - Explain why each layer exists.
 - Show common failure modes and beginner traps.
-- Use diagrams, code, math, or stories when they improve understanding.
+- Use diagrams, graphs, tables, timelines, code, math, stories, animations, or short videos
+  when they improve understanding.
+- Consider visual aids for structures, relationships, processes, algorithms, systems, or
+  quantities, but skip them when they would add noise. Use animation or video only when
+  motion, sequence, causality, feedback loops, or state changes are central to the idea.
 
 Output:
 
 - Production or real-world version.
+- Visual/media aid or a concise plan for one.
 - Failure modes.
 - Misconception warnings.
 
@@ -101,4 +106,3 @@ Owner: Learning Coach
 Output:
 
 - Memory entries added, updated, or intentionally skipped.
-
