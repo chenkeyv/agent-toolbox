@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prevent Repeat"
+  short_description: "Diagnose mistakes and prevent recurrence"
+  default_prompt: "Use $prevent-repeat to investigate this missed behavior and recommend a durable fix."
