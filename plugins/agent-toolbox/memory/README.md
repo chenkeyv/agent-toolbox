@@ -1,6 +1,6 @@
 # Memory
 
-Agent Toolbox memory is explicit, file-based, and reviewable. Agents may use it as context, but
+Agent Toolbox memory is explicit, file-based, and reviewable. Skills may use it as context, but
 must not treat it as more authoritative than the current user request, current project files,
 or fresh source-backed facts.
 
@@ -11,7 +11,6 @@ or fresh source-backed facts.
 | Project memory | [project.md](project.md) | Stable repo conventions, architecture decisions, and workflow norms. |
 | User preferences | [user-preferences.md](user-preferences.md) | Explicit user preferences that should shape future work. |
 | Research memory | [research.md](research.md) | Source-backed facts, comparisons, and external references. |
-| Agent memory | [agents/](agents/) | Role-specific operating notes and lessons learned. |
 | Schema | [schema.yaml](schema.yaml) | Required fields and validation guidance for structured memory entries. |
 
 ## Read Rules
@@ -35,7 +34,7 @@ or fresh source-backed facts.
 ```yaml
 - id: mem-000
   scope: project
-  owner: orchestrator
+  owner: agent-toolbox
   content: "Short reusable memory written as a concrete fact or preference."
   source: "Where this came from."
   confidence: medium
@@ -49,7 +48,5 @@ or fresh source-backed facts.
 
 - `working`: Useful only during the current task. Usually do not commit it.
 - `project`: Stable knowledge about this repository or team.
-- `agent`: Role-specific operating memory.
 - `research`: Source-backed external facts.
 - `user-preference`: Explicit preferences from the user.
-

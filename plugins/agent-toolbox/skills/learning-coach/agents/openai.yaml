@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learning Coach"
+  short_description: "Teach from first principles with active practice"
+  default_prompt: "Use $learning-coach to teach me this topic from first principles and check my understanding."

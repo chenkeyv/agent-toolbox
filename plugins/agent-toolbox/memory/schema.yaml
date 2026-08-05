@@ -27,13 +27,12 @@ fields:
     values:
       - working
       - project
-      - agent
       - research
       - user-preference
     description: Memory category and expected lifetime.
   owner:
     type: string
-    description: Agent id responsible for the memory entry.
+    description: Skill, maintainer, or workflow responsible for the memory entry.
   content:
     type: string
     description: Concrete reusable memory. Keep it short and actionable.
@@ -86,7 +85,6 @@ policies:
     - Fresh source-backed research
     - User preference memory
     - Project memory
-    - Agent-specific memory
   never_store:
     - Secrets, credentials, API keys, tokens, passwords, or private keys.
     - Sensitive personal data that is not explicitly needed for the project.

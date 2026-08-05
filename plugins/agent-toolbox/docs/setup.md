@@ -1,28 +1,28 @@
 # Setup Guide
 
-Install Agent Toolbox once as a Codex plugin instead of adding it as a submodule to every project.
+Install Agent Toolbox once as a Codex plugin instead of adding reusable tooling to every project.
 
 ## Recommended Setup
 
-Add this private repository as a Codex plugin marketplace, then install the `agent-toolbox` plugin:
+Add this private repository as a Codex plugin marketplace, then install the plugin:
 
 ```bash
 codex plugin marketplace add chenkeyv/agent-toolbox --ref main
 codex plugin add agent-toolbox@agent-toolbox
 ```
 
-Start a new Codex thread after installation so the bundled skill is available.
+Start a new Codex thread after installation so the bundled skills are available.
 
 ## Local Development Setup
 
-When testing changes from this local checkout before pushing them, add the local marketplace root:
+When testing changes from this checkout before pushing them, add the local marketplace root:
 
 ```bash
 codex plugin marketplace add /Users/keyv/Developer/agent-toolbox
 codex plugin add agent-toolbox@agent-toolbox
 ```
 
-After editing the plugin package, reinstall from the same marketplace and start a new thread.
+After editing the package, reinstall from the same marketplace and start a new thread.
 
 ## Project Instructions
 
@@ -34,10 +34,15 @@ For projects that should use Agent Toolbox, add a root `AGENTS.md` like this:
 <!-- agent-toolbox:start -->
 ## Agent Toolbox Setup
 
-- This repository uses the installed Agent Toolbox Codex plugin.
-- When the user asks to use Agent Toolbox, use the installed plugin skill and follow its bundled team/workflow files.
-- Keep project-specific learning state, checkpoints, secrets, credentials, and private local notes inside this repository, not inside Agent Toolbox.
-- Current user instructions and current repository files take precedence over bundled Agent Toolbox memory templates.
+- This repository uses the installed Agent Toolbox Codex plugin or project-owned skills under `.agents/skills/`.
+- Use task-specific skills when their descriptions match. Do not assume Agent Toolbox provides a multi-agent runtime.
+- Current user instructions and current repository files take precedence over bundled skill guidance and memory templates.
+
+## Project Memory
+
+- Keep durable project memory in `.agent-memory/project.md`, `docs/agent-memory.md`, or a topic-specific file such as `learning/<topic>.md`.
+- Keep project-specific checkpoints in this repository, not inside reusable tooling.
+- Store only durable, useful context with provenance when practical.
 
 ## Working Rules
 
@@ -47,10 +52,9 @@ For projects that should use Agent Toolbox, add a root `AGENTS.md` like this:
   file references, command output, tests, experiments, source links, or
   measured data.
 - Clearly label assumptions when evidence is unavailable.
-- Do not vendor or clone Agent Toolbox into this repository unless plugin installation is unavailable.
-- Store durable project memory in a project-owned path such as `learning/<topic>.md`, `docs/agent-memory.md`, or `.agent-memory/project.md`.
-- Keep local agent assets as project-owned files under `.agents/` unless the user explicitly asks for an external Git submodule.
-- Avoid committing secrets, credentials, OAuth state, or machine-local configuration.
+- Do not commit secrets, credentials, OAuth state, or machine-local configuration.
+- Do not vendor or clone reusable tooling into this repository unless plugin installation is unavailable or the user explicitly wants local skills.
+- Keep repository-specific skills under `.agents/skills/`.
 - Add or update tests with every change. If a test cannot be added, state the
   reason and what validation was run instead.
 - When tests fail, identify the root cause before changing or dismissing the
@@ -75,36 +79,39 @@ Codex discovers root `AGENTS.md` automatically when it works in the target repos
 
 ## Refresh Existing Projects
 
-For existing projects, refresh only the content between:
+Refresh only the content between `<!-- agent-toolbox:start -->` and
+`<!-- agent-toolbox:end -->`. If the markers are absent but a clear Agent Toolbox section exists,
+wrap that section and normalize only it. Otherwise add one managed block without rewriting
+project-specific rules. A second refresh should produce no diff unless the template changed.
 
-```md
-<!-- agent-toolbox:start -->
-<!-- agent-toolbox:end -->
-```
-
-If a project does not have those markers yet, add them around the existing Agent Toolbox section
-when one is clear. Otherwise add one managed block without rewriting project-specific rules. A
-second refresh should produce no diff unless the template changed.
-
-## Use The Team
-
-Example task prompt:
-
-```text
-Use Agent Toolbox workflow. Goal: add GitHub issue templates to this repo.
-```
+## Use The Skills
 
 Learning prompt:
 
 ```text
-Use Agent Toolbox Learning Coach.
-
-Topic:
-I want to understand distributed systems from the ground up.
+Use $learning-coach to teach me distributed systems from the ground up and check my understanding.
 ```
+
+Behavior-retrospective prompt:
+
+```text
+Use $prevent-repeat to investigate why this behavior was missed and recommend a durable fix.
+```
+
+Project-setup prompt:
+
+```text
+Use $setup-agent-project to refresh this repository's Codex instructions.
+```
+
+## Project-Owned Skills
+
+Put repository-specific reusable behavior under `.agents/skills/<skill-name>/SKILL.md`. Do not add
+an agent roster or subagent configuration unless the project intentionally integrates a runtime
+that consumes it.
 
 ## Memory Boundary
 
-Bundled files under `memory/` are reusable templates and context for the plugin. Project-specific
-memory belongs in the project using the plugin. Store only durable, reusable context, include
-provenance when possible, and avoid secrets or unverifiable personal details.
+Bundled files under `memory/` are reusable templates. Project-specific memory belongs in the project
+using the plugin. Store only durable, reusable context with provenance, and write it only when the
+user authorizes persistence.

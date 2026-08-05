@@ -21,7 +21,7 @@ codex plugin add agent-toolbox@agent-toolbox
 ```
 
 Start a new Codex thread after installing or updating the plugin so Codex can
-load the bundled skill.
+load the bundled skills.
 
 ## Layout
 
@@ -31,8 +31,6 @@ load the bundled skill.
 | `plugins/agent-toolbox/` | Installable Codex plugin package. |
 | `plugins/agent-toolbox/.codex-plugin/plugin.json` | Plugin manifest. |
 | `plugins/agent-toolbox/skills/` | Codex skill entrypoints. |
-| `plugins/agent-toolbox/agents/` | Framework-neutral Markdown agent profiles. |
-| `plugins/agent-toolbox/workflows/` | Reusable handoff and delivery workflows. |
 | `plugins/agent-toolbox/memory/` | Reusable memory templates and schema, not project checkpoints. |
 
 Keep secrets, credentials, local OAuth state, and project-specific checkpoints
