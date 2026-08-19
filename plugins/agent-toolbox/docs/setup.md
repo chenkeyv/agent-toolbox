@@ -86,12 +86,6 @@ project-specific rules. A second refresh should produce no diff unless the templ
 
 ## Use The Skills
 
-Learning prompt:
-
-```text
-Use $learning-coach to teach me distributed systems from the ground up and check my understanding.
-```
-
 Behavior-retrospective prompt:
 
 ```text

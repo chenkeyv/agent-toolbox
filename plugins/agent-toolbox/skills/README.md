@@ -20,7 +20,6 @@ to the skill instead of expanding `SKILL.md` unnecessarily.
 
 | Skill | Purpose |
 | --- | --- |
-| `learning-coach` | Teach concepts from first principles with active practice. |
 | `prevent-repeat` | Investigate missed behavior and apply durable prevention. |
 | `rename-master-to-main` | Safely migrate a Git repository default branch from `master` to `main`. |
 | `setup-agent-project` | Configure repositories for Agent Toolbox and project-owned agent workflows. |

@@ -1,7 +1,7 @@
 {
   "name": "agent-toolbox",
-  "version": "0.1.0+codex.20260805085950",
-  "description": "Reusable Codex skills for project setup, learning, and reliable agent behavior.",
+  "version": "0.1.0+codex.20260819135044",
+  "description": "Reusable Codex skills for project setup and reliable agent behavior.",
   "author": {
     "name": "chenkeyv",
     "url": "https://github.com/chenkeyv"
@@ -17,14 +17,13 @@
   "interface": {
     "displayName": "Agent Toolbox",
     "shortDescription": "Reusable skills for reliable Codex workflows.",
-    "longDescription": "Agent Toolbox packages focused Codex skills for project setup, first-principles learning, behavior improvement, and safe repository maintenance.",
+    "longDescription": "Agent Toolbox packages focused Codex skills for project setup, behavior improvement, and safe repository maintenance.",
     "developerName": "chenkeyv",
     "category": "Productivity",
     "capabilities": [
       "Skills"
     ],
     "defaultPrompt": [
-      "Use $learning-coach to teach me this topic from first principles.",
       "Use $prevent-repeat to investigate this missed behavior and prevent recurrence.",
       "Use $setup-agent-project to configure this repository for Codex workflows."
     ]

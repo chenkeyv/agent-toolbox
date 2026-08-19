@@ -1,7 +1,6 @@
 # Agent Toolbox
 
-Reusable Codex skills for project setup, first-principles learning, behavior improvement, and safe
-repository maintenance.
+Reusable Codex skills for project setup, behavior improvement, and safe repository maintenance.
 
 This directory is the installable Codex plugin package. The repository root exposes it through
 `.agents/plugins/marketplace.json`, so install the marketplace once instead of cloning reusable
@@ -25,7 +24,6 @@ Agent Toolbox is skills-first on purpose. Codex discovers each focused workflow 
 
 | Skill | Purpose |
 | --- | --- |
-| `learning-coach` | Teach concepts from first principles with active practice. |
 | `prevent-repeat` | Investigate missed behavior and apply durable prevention. |
 | `rename-master-to-main` | Safely migrate a Git repository default branch from `master` to `main`. |
 | `setup-agent-project` | Configure repositories for Agent Toolbox and project-owned Codex workflows. |
@@ -46,12 +44,6 @@ the user authorizes it and the information belongs in the target project or expl
 ## How To Use
 
 After installing the plugin, start a new Codex thread and invoke the skill that matches the task.
-
-Learning prompt:
-
-```text
-Use $learning-coach to teach me distributed systems from the ground up and check my understanding.
-```
 
 Behavior-retrospective prompt:
 

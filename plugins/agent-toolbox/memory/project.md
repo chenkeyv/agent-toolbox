@@ -26,16 +26,4 @@ Stable knowledge about this repository and plugin package.
   tags:
     - memory
     - repo-convention
-
-- id: project-003
-  scope: project
-  owner: learning-coach
-  content: "The Learning Coach is a standalone Codex skill for first-principles teaching, active checks, and focused practice."
-  source: "skills/learning-coach/SKILL.md"
-  confidence: high
-  updated_at: 2026-08-05
-  expires_at: null
-  tags:
-    - learning-coach
-    - skill
 ```
