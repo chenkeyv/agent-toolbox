@@ -42,6 +42,15 @@ Use this as a starting point, then tailor it to the target project.
   separate `-m` flags or a commit message file instead of escaped `\n` in a
   single `-m` argument.
 - Run the most relevant validation after setup changes and report any checks that were skipped.
+
+## 中文表达
+
+- 使用自然、规范、符合中文语法习惯的表达。
+- 避免照搬英文句式和明显的翻译腔。
+- 不生造词语，不为了显得专业而使用少见、晦涩或不必要的表达。
+- 避免不必要的互联网、商业和职场黑话，例如“深钻”“下挖”“口径”“抓手”“拉通”“对齐”“颗粒度”等；只有这些词在具体语境中确实准确、自然时才使用。
+- 如果有常见、准确的中文表达，优先使用常见表达。
+- 技术术语可以保留，但解释和叙述应尽量使用自然中文。
 <!-- agent-toolbox:end -->
 
 ## Project-Specific Rules

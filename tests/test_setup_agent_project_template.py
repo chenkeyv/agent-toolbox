@@ -22,6 +22,22 @@ REQUIRED_RULES = [
     "For multi-line or multi-paragraph commit messages, preserve line breaks",
 ]
 
+REQUIRED_CHINESE_WRITING_RULES = [
+    "使用自然、规范、符合中文语法习惯的表达",
+    "避免照搬英文句式和明显的翻译腔",
+    "不生造词语，不为了显得专业而使用少见、晦涩或不必要的表达",
+    "避免不必要的互联网、商业和职场黑话",
+    "深钻",
+    "下挖",
+    "口径",
+    "抓手",
+    "拉通",
+    "对齐",
+    "颗粒度",
+    "如果有常见、准确的中文表达，优先使用常见表达",
+    "技术术语可以保留，但解释和叙述应尽量使用自然中文",
+]
+
 
 def normalize(text):
     return " ".join(text.split())
@@ -31,6 +47,13 @@ class SetupAgentProjectTemplateTest(unittest.TestCase):
     def test_includes_required_working_rules(self):
         text = normalize(TEMPLATE_PATH.read_text())
         for rule in REQUIRED_RULES:
+            with self.subTest(rule=rule):
+                self.assertIn(normalize(rule), text)
+
+    def test_includes_required_chinese_writing_rules(self):
+        text = normalize(TEMPLATE_PATH.read_text())
+        self.assertIn("## 中文表达", TEMPLATE_PATH.read_text())
+        for rule in REQUIRED_CHINESE_WRITING_RULES:
             with self.subTest(rule=rule):
                 self.assertIn(normalize(rule), text)
 
