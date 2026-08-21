@@ -1,9 +1,31 @@
+import json
 from pathlib import Path
+import re
 import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PACKAGE = ROOT / "plugins/agent-toolbox"
+PACKAGE = ROOT
+PORTABLE_MANIFEST = PACKAGE / "plugin.json"
+
+EXPECTED_SKILLS = [
+    "prevent-repeat",
+    "rename-master-to-main",
+    "setup-agent-project",
+]
+
+PORTABLE_MANIFEST_FIELDS = {
+    "$schema",
+    "name",
+    "version",
+    "description",
+    "author",
+    "homepage",
+    "repository",
+    "license",
+    "keywords",
+    "extensions",
+}
 
 REMOVED_MULTI_AGENT_PATHS = [
     PACKAGE / "team.yaml",
@@ -20,7 +42,7 @@ CATALOG_PATHS = [
 ]
 
 LEARNING_COACH_REFERENCE_PATHS = [
-    PACKAGE / ".codex-plugin/plugin.json",
+    PORTABLE_MANIFEST,
     PACKAGE / "README.md",
     PACKAGE / "docs/setup.md",
     PACKAGE / "memory/project.md",
@@ -39,16 +61,10 @@ class SkillsFirstPackageTest(unittest.TestCase):
                 self.assertNotIn("learning coach", text)
 
     def test_catalogs_list_remaining_skills(self):
-        expected_skills = [
-            "prevent-repeat",
-            "rename-master-to-main",
-            "setup-agent-project",
-        ]
-
         for path in CATALOG_PATHS:
             text = path.read_text()
             with self.subTest(path=path):
-                for skill in expected_skills:
+                for skill in EXPECTED_SKILLS:
                     self.assertIn(f"| `{skill}` |", text)
                 self.assertNotIn("| `agent-toolbox` |", text)
 
@@ -57,10 +73,46 @@ class SkillsFirstPackageTest(unittest.TestCase):
             with self.subTest(path=path):
                 self.assertFalse(path.exists())
 
-    def test_manifest_promotes_task_specific_skills(self):
-        text = (PACKAGE / ".codex-plugin/plugin.json").read_text()
-        self.assertIn("$prevent-repeat", text)
-        self.assertIn("$setup-agent-project", text)
+    def test_portable_agent_plugins_manifest(self):
+        manifest = json.loads(PORTABLE_MANIFEST.read_text())
+
+        self.assertEqual(
+            manifest["$schema"],
+            "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+        )
+        self.assertEqual(manifest["name"], "agent-toolbox")
+        self.assertRegex(
+            manifest["name"],
+            re.compile(r"^(?!.*(?:--|\.\.))[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$"),
+        )
+        self.assertLessEqual(len(manifest["name"]), 64)
+        self.assertLessEqual(set(manifest), PORTABLE_MANIFEST_FIELDS)
+        self.assertEqual(manifest["version"], "0.1.0")
+        self.assertIsInstance(manifest["description"], str)
+        self.assertIsInstance(manifest["author"], dict)
+        self.assertLessEqual(set(manifest["author"]), {"name", "email", "url"})
+        self.assertTrue(all(isinstance(keyword, str) for keyword in manifest["keywords"]))
+        self.assertNotIn("skills", manifest)
+
+    def test_legacy_codex_marketplace_wrapper_is_removed(self):
+        legacy_paths = [
+            ROOT / ".agents/plugins/marketplace.json",
+            ROOT / ".codex-plugin/plugin.json",
+            ROOT / "plugins/agent-toolbox/.codex-plugin/plugin.json",
+        ]
+
+        for path in legacy_paths:
+            with self.subTest(path=path):
+                self.assertFalse(path.exists())
+
+    def test_portable_skills_use_fixed_discovery_location(self):
+        discovered_skills = sorted(
+            path.parent.name
+            for path in (PACKAGE / "skills").glob("*/SKILL.md")
+            if path.is_file()
+        )
+
+        self.assertEqual(discovered_skills, EXPECTED_SKILLS)
 
 
 if __name__ == "__main__":

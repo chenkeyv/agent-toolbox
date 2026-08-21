@@ -1,6 +1,6 @@
 ---
 name: prevent-repeat
-description: Investigate a missed instruction, incorrect agent behavior, repeated mistake, or disappointing workflow outcome and turn it into a durable prevention. Use when the user asks why Codex did or did not do something, points out behavior that should not recur, says an instruction, skill, or rule was ignored, or asks how to prevent the same mistake. Compare expected and actual behavior using evidence, locate the failure layer, recommend the correct enforcement surface, and verify the fix without inventing hidden reasoning.
+description: Investigate a missed instruction, incorrect agent behavior, repeated mistake, or disappointing workflow outcome and turn it into a durable prevention. Use when the user asks why an agent did or did not do something, points out behavior that should not recur, says an instruction, skill, or rule was ignored, or asks how to prevent the same mistake. Compare expected and actual behavior using evidence, locate the failure layer, recommend the correct enforcement surface, and verify the fix without inventing hidden reasoning.
 ---
 
 # Prevent Repeat

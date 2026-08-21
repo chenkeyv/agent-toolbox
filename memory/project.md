@@ -6,8 +6,8 @@ Stable knowledge about this repository and plugin package.
 - id: project-001
   scope: project
   owner: agent-toolbox
-  content: "Agent Toolbox is skills-first: reusable behavior ships as focused Codex skills rather than a framework-neutral agent roster."
-  source: "README.md and plugins/agent-toolbox/README.md"
+  content: "Agent Toolbox is skills-first: reusable behavior ships as focused Agent Skills rather than a framework-neutral agent roster."
+  source: "README.md and skills/README.md"
   confidence: high
   updated_at: 2026-08-05
   expires_at: null

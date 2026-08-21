@@ -1,6 +1,6 @@
 # Skills
 
-Reusable Codex skills live here.
+Reusable Agent Skills live here.
 
 Use one directory per skill:
 
@@ -12,7 +12,7 @@ skills/
     scripts/
 ```
 
-Keep skill descriptions specific enough that Codex can choose the skill
+Keep skill descriptions specific enough that compatible clients can choose the skill
 implicitly when a task matches it. Put large references and helper scripts next
 to the skill instead of expanding `SKILL.md` unnecessarily.
 

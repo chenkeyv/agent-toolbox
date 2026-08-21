@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "agent-toolbox",
+  "version": "0.1.0",
+  "description": "Reusable agent skills for project setup and reliable agent behavior.",
+  "author": {
+    "name": "chenkeyv",
+    "url": "https://github.com/chenkeyv"
+  },
+  "homepage": "https://github.com/chenkeyv/agent-toolbox",
+  "repository": "https://github.com/chenkeyv/agent-toolbox",
+  "keywords": [
+    "agents",
+    "agent-plugins",
+    "codex",
+    "skills",
+    "workflow"
+  ]
+}

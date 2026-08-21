@@ -7,4 +7,3 @@ Only store explicit user preferences that should shape future work.
 ```
 
 No durable user preferences have been recorded yet.
-

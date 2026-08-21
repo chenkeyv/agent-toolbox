@@ -1,26 +1,28 @@
 # Repository Agent Instructions
 
-This repository is a private Codex plugin marketplace for reusable skills, prompts,
-MCP examples, memory templates, and plugin packaging.
+This repository is a private Agent Plugins 1.0 package for reusable skills, prompts, MCP examples,
+and memory templates. The repository root is the plugin root.
 
 When changing this repo:
 
-- Keep the marketplace catalog at `.agents/plugins/marketplace.json`.
-- Keep the installable Agent Toolbox package under `plugins/agent-toolbox/`.
+- Keep the portable manifest at root `plugin.json` and target the published Agent Plugins schema.
+- Do not add a Codex marketplace wrapper or `.codex-plugin` manifest unless a client-specific
+  capability outside the portable format is intentionally introduced.
 - Keep the package skills-first. Do not add framework-neutral agent rosters, team
   indexes, or placeholder subagent scaffolding unless a runtime integration is
   intentionally introduced.
 - Prefer Markdown for human-readable instructions and YAML or JSON for structured metadata.
-- Add reusable Codex skills under `plugins/agent-toolbox/skills/<skill-name>/SKILL.md`.
-- Add prompt templates under `plugins/agent-toolbox/prompts/`.
-- Add MCP examples under `plugins/agent-toolbox/mcp/`, but never commit tokens or local credentials.
-- Keep reusable memory templates under `plugins/agent-toolbox/memory/` and follow `plugins/agent-toolbox/memory/schema.yaml` for new entries.
+- Add reusable Agent Skills under `skills/<skill-name>/SKILL.md`.
+- Add prompt templates under `prompts/`.
+- Add MCP examples under `mcp/`, but never commit tokens or local credentials. Add root `mcp.json`
+  only when the plugin actually provides runnable MCP servers.
+- Keep reusable memory templates under `memory/` and follow `memory/schema.yaml` for new entries.
 - Do not store secrets, credentials, private personal details, or unverifiable claims in memory.
 - Update memory only when the information is likely to be useful beyond the current task.
 - Avoid binding the repo to one agent framework unless that framework is intentionally added.
 - Keep project-specific checkpoints in the project that uses the plugin, not in this repo.
-- Update `plugins/agent-toolbox/README.md`, `plugins/agent-toolbox/skills/README.md`,
-  and the plugin cachebuster whenever the bundled skill set changes.
+- Update `README.md`, `skills/README.md`, and the portable plugin version whenever the bundled skill
+  set changes.
 - Use Conventional Commits for Git commit subjects (`type(scope): subject`).
 - For multi-line commit messages, use separate `-m` flags or a commit message
   file instead of escaped `\n` in a single `-m` argument.
