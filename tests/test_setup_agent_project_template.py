@@ -3,8 +3,8 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-TEMPLATE_PATH = ROOT / "skills/setup-agent-project/references/agents-template.md"
-TEMPLATE_REFERENCE_PATHS = [
+GUIDE_PATH = ROOT / "skills/setup-agent-project/references/agents-template.md"
+GUIDE_REFERENCE_PATHS = [
     (ROOT / "skills/setup-agent-project/SKILL.md", "references/agents-template.md"),
     (
         ROOT / "docs/setup.md",
@@ -43,27 +43,49 @@ def normalize(text):
     return " ".join(text.split())
 
 
-class SetupAgentProjectTemplateTest(unittest.TestCase):
+class SetupAgentProjectTailoringGuideTest(unittest.TestCase):
     def test_includes_required_working_rules(self):
-        text = normalize(TEMPLATE_PATH.read_text())
+        text = normalize(GUIDE_PATH.read_text())
         for rule in REQUIRED_RULES:
             with self.subTest(rule=rule):
                 self.assertIn(normalize(rule), text)
 
     def test_includes_required_chinese_writing_rules(self):
-        text = normalize(TEMPLATE_PATH.read_text())
-        self.assertIn("## 中文表达", TEMPLATE_PATH.read_text())
+        text = normalize(GUIDE_PATH.read_text())
+        self.assertIn("## Candidate Chinese Writing Rules", GUIDE_PATH.read_text())
         for rule in REQUIRED_CHINESE_WRITING_RULES:
             with self.subTest(rule=rule):
                 self.assertIn(normalize(rule), text)
 
-    def test_skill_and_guide_reference_the_canonical_template(self):
-        for path, reference in TEMPLATE_REFERENCE_PATHS:
+    def test_skill_and_guide_reference_the_tailoring_guide(self):
+        for path, reference in GUIDE_REFERENCE_PATHS:
             text = path.read_text()
             with self.subTest(path=path):
                 self.assertIn(reference, text)
                 self.assertNotIn("\n# Agent Project Instructions\n", text)
                 self.assertNotIn("\n## Agent Toolbox Setup\n", text)
+
+        setup_guide = normalize((ROOT / "docs/setup.md").read_text())
+        self.assertIn("rule catalog, not a file template", setup_guide)
+        self.assertNotIn("canonical", setup_guide)
+
+    def test_guide_is_not_a_copy_ready_agents_file(self):
+        guide = GUIDE_PATH.read_text()
+        normalized_guide = normalize(guide)
+
+        self.assertIn("Do not copy this file into a project", guide)
+        self.assertIn("written from repository evidence", normalized_guide)
+        self.assertIn("not a wholesale or near-wholesale copy", normalized_guide)
+        self.assertNotIn("```md\n# Agent Project Instructions", guide)
+        self.assertNotIn("## Project-Specific Rules", guide)
+        self.assertNotIn("Add repository-specific build", guide)
+
+    def test_skill_requires_evidence_driven_tailoring(self):
+        skill = normalize((ROOT / "skills/setup-agent-project/SKILL.md").read_text())
+
+        self.assertIn("Draft the project-specific sections from inspected repository evidence", skill)
+        self.assertIn("Omit generic rules already supplied by higher-scope instructions", skill)
+        self.assertIn("not a wholesale or near-wholesale copy", skill)
 
     def test_safety_boundaries_are_explicit(self):
         rename_text = normalize((ROOT / "skills/rename-master-to-main/SKILL.md").read_text())

@@ -29,12 +29,15 @@ and secrets in the right places.
 3. Add or update root project instructions.
    - Keep the active client's project instruction file concise and project-specific; use root
      `AGENTS.md` when the client supports it.
-   - State how the project should use installed or project-owned skills.
-   - State where durable project memory belongs.
-   - State that current user instructions and repository files override bundled skill guidance or
-     older memory.
-   - State the secrets policy: do not commit tokens, credentials, OAuth state, or machine-local
-     configuration.
+   - Draft the project-specific sections from inspected repository evidence before consulting the
+     tailoring guide. Name real products, source boundaries, commands, generated paths, and safety
+     constraints instead of retaining generic headings or placeholder text.
+   - Add skill-usage guidance only when installed or project-owned skills actually apply. Add a
+     project-memory section only when memory already exists or the user explicitly requested it.
+   - Tailor secrets guidance to the repository's actual risk surfaces while retaining the baseline
+     prohibition on committing credentials, OAuth state, or machine-local configuration.
+   - Omit generic rules already supplied by higher-scope instructions unless this repository needs
+     a deliberate override or a project-specific version.
    - Put refreshable Agent Toolbox guidance inside an `agent-toolbox` managed block.
    - Preserve existing project rules unless the user asks to replace them.
 
@@ -54,6 +57,12 @@ and secrets in the right places.
 
 6. Verify the setup.
    - Run `git status --short --branch` and inspect the complete diff.
+   - Map every new instruction to an explicit user request or inspected repository evidence. Remove
+     generic catalog entries, inherited duplicates, and placeholder headings that have no such
+     basis.
+   - Confirm the result is not a wholesale or near-wholesale copy of the tailoring guide and that
+     its build, test, lint, release, privacy, and ownership statements use the target project's real
+     commands and paths when those topics apply.
    - If a submodule was explicitly requested, run `git submodule status` and inspect `.gitmodules`.
    - If the Agent Toolbox plugin package changed, run its skill and package validation commands.
    - Report installed or changed files, verification performed, and any client-specific reload or
@@ -65,8 +74,9 @@ Treat repeated runs as idempotent refreshes.
 
 1. Record whether `AGENTS.md`, `.gitmodules`, `.agents/skills/`, `.agent-memory/`, `learning/`, and
    relevant docs already exist.
-2. Replace only the content between `<!-- agent-toolbox:start -->` and
-   `<!-- agent-toolbox:end -->` when those markers exist.
+2. Edit only stale Agent Toolbox-owned content between `<!-- agent-toolbox:start -->` and
+   `<!-- agent-toolbox:end -->` when those markers exist. Preserve useful project-specific
+   tailoring inside the block; do not replace it with the full guide or candidate-rule catalog.
 3. If the markers are absent but a clear Agent Toolbox section exists, wrap and normalize only
    that section. Otherwise add one managed block without rewriting project-specific rules.
 4. Stop and ask when existing instructions conflict with the managed block or local assets have an
@@ -97,8 +107,10 @@ Keep repository-specific reusable behavior local when it should not ship in the 
 Use a Git submodule only when the user explicitly asks to track an external upstream repository.
 If a submodule is needed, let Git create or update `.gitmodules` instead of editing it manually.
 
-## AGENTS.md Template
+## AGENTS.md Tailoring Guide
 
 When the active client supports root `AGENTS.md` and the project needs one, read
-[the canonical template](references/agents-template.md) and tailor it to the target repository.
+[the tailoring guide](references/agents-template.md) as a completeness check after drafting from
+repository evidence. It is a rule catalog, not a file template: select only applicable guidance and
+rewrite it around the target project's real structure and commands.
 Keep the managed block idempotent and preserve project-specific rules outside it.

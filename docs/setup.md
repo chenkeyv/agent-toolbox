@@ -21,19 +21,21 @@ client's development workflow.
 
 ## Project Instructions
 
-For projects that should use Agent Toolbox, start from the
-[canonical `AGENTS.md` template](../skills/setup-agent-project/references/agents-template.md) and
-tailor it to the target repository.
+For projects that should use Agent Toolbox, inspect the target first and draft its instructions from
+the repository's actual structure and commands. Then use the
+[`AGENTS.md` tailoring guide](../skills/setup-agent-project/references/agents-template.md) as a
+completeness check. The guide is a rule catalog, not a file template; do not copy it wholesale.
 
-Use root `AGENTS.md` when the active client supports it; otherwise adapt the template to that
-client's project-instruction file.
+Use root `AGENTS.md` when the active client supports it; otherwise apply the same evidence-driven
+tailoring process to that client's project-instruction file.
 
 ## Refresh Existing Projects
 
-Refresh only the content between `<!-- agent-toolbox:start -->` and
+Refresh only stale Agent Toolbox-owned content between `<!-- agent-toolbox:start -->` and
 `<!-- agent-toolbox:end -->`. If the markers are absent but a clear Agent Toolbox section exists,
 wrap that section and normalize only it. Otherwise add one managed block without rewriting
-project-specific rules. A second refresh should produce no diff unless the template changed.
+project-specific rules. Preserve project-specific tailoring inside the block, never replace it with
+the full rule catalog, and make a second refresh produce no diff.
 
 ## Use The Skills
 
