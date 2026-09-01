@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit Agent Assets"
+  short_description: "Modernize agent docs and context use"
+  default_prompt: "Use $audit-agent-assets to audit this repository's agent-facing assets for context efficiency and current model capabilities, then recommend a better-performing structure."

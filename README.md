@@ -32,6 +32,7 @@ See [docs/setup.md](docs/setup.md) for package use and project-instruction guida
 
 | Skill | Purpose |
 | --- | --- |
+| `audit-agent-assets` | Audit and modernize agent-facing assets for context efficiency and current model capabilities. |
 | `prevent-repeat` | Investigate missed behavior and apply durable prevention. |
 | `rename-master-to-main` | Safely migrate a Git repository default branch from `master` to `main`. |
 | `setup-agent-project` | Configure repositories for Agent Toolbox and project-owned agent workflows. |
@@ -39,6 +40,10 @@ See [docs/setup.md](docs/setup.md) for package use and project-instruction guida
 ## How To Use
 
 After installing the plugin, start a new task or chat and invoke the skill that matches the work.
+
+```text
+Use $audit-agent-assets to review this repository's agent-facing assets and recommend a modern, context-efficient structure.
+```
 
 ```text
 Use $prevent-repeat to investigate why this instruction was missed and recommend a durable fix.

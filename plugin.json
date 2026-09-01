@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "agent-toolbox",
-  "version": "0.1.0",
-  "description": "Reusable agent skills for project setup and reliable agent behavior.",
+  "version": "0.2.0",
+  "description": "Reusable skills for agent-asset audits and upgrades, project setup, and reliable agent behavior.",
   "author": {
     "name": "chenkeyv",
     "url": "https://github.com/chenkeyv"
