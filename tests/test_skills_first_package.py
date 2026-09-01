@@ -88,7 +88,7 @@ class SkillsFirstPackageTest(unittest.TestCase):
         )
         self.assertLessEqual(len(manifest["name"]), 64)
         self.assertLessEqual(set(manifest), PORTABLE_MANIFEST_FIELDS)
-        self.assertEqual(manifest["version"], "0.2.0")
+        self.assertEqual(manifest["version"], "0.3.0")
         self.assertIsInstance(manifest["description"], str)
         self.assertIsInstance(manifest["author"], dict)
         self.assertLessEqual(set(manifest["author"]), {"name", "email", "url"})

@@ -35,7 +35,7 @@ See [docs/setup.md](docs/setup.md) for package use and project-instruction guida
 | `audit-agent-assets` | Audit and modernize agent-facing assets for context efficiency and current model capabilities. |
 | `prevent-repeat` | Investigate missed behavior and apply durable prevention. |
 | `rename-master-to-main` | Safely migrate a Git repository default branch from `master` to `main`. |
-| `setup-agent-project` | Configure repositories for Agent Toolbox and project-owned agent workflows. |
+| `setup-agent-project` | Set up agent-ready repositories with evidence-driven instructions and whole-file refreshes. |
 
 ## How To Use
 

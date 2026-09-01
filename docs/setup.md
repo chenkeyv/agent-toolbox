@@ -21,21 +21,30 @@ client's development workflow.
 
 ## Project Instructions
 
-For projects that should use Agent Toolbox, inspect the target first and draft its instructions from
-the repository's actual structure and commands. Then use the
-[`AGENTS.md` tailoring guide](../skills/setup-agent-project/references/agents-template.md) as a
-completeness check. The guide is a rule catalog, not a file template; do not copy it wholesale.
+For projects that should use Agent Toolbox, inspect the target and generate its instructions freely
+from the repository's actual structure, commands, constraints, and the user's request. Do not base
+the result on a template or fixed section list. The optional
+[`AGENTS.md` example](../skills/setup-agent-project/references/agents-example.md) illustrates one
+possible finished result for a fictional project; it is not source material for the target file.
+After the independent first draft is complete, use the
+[`AGENTS.md` content review](../skills/setup-agent-project/references/agents-content-review.md) to
+check for omitted categories of project facts. Any addition must still be written from repository
+evidence, not copied from the review.
 
 Use root `AGENTS.md` when the active client supports it; otherwise apply the same evidence-driven
 tailoring process to that client's project-instruction file.
 
 ## Refresh Existing Projects
 
-Refresh only stale Agent Toolbox-owned content between `<!-- agent-toolbox:start -->` and
-`<!-- agent-toolbox:end -->`. If the markers are absent but a clear Agent Toolbox section exists,
-wrap that section and normalize only it. Otherwise add one managed block without rewriting
-project-specific rules. Preserve project-specific tailoring inside the block, never replace it with
-the full rule catalog, and make a second refresh produce no diff.
+Re-evaluate the entire project instruction file against current repository evidence, including
+project-specific rules outside any managed block. Update stale commands, paths, boundaries, and
+ownership statements while preserving instructions that remain accurate.
+
+Use `<!-- agent-toolbox:start -->` and `<!-- agent-toolbox:end -->` only as an ownership boundary for
+project-specific Agent Toolbox workflow guidance. Do not add or retain a managed block merely
+because Agent Toolbox is installed or its setup skill was used; remove empty markers. Stop when
+ownership or an external-upstream relationship is unclear. Apply the post-draft content review and
+make a second refresh produce no diff.
 
 ## Use The Skills
 

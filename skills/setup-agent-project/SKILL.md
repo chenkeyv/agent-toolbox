@@ -29,16 +29,22 @@ and secrets in the right places.
 3. Add or update root project instructions.
    - Keep the active client's project instruction file concise and project-specific; use root
      `AGENTS.md` when the client supports it.
-   - Draft the project-specific sections from inspected repository evidence before consulting the
-     tailoring guide. Name real products, source boundaries, commands, generated paths, and safety
-     constraints instead of retaining generic headings or placeholder text.
-   - Add skill-usage guidance only when installed or project-owned skills actually apply. Add a
-     project-memory section only when memory already exists or the user explicitly requested it.
+   - Generate the instruction file freely from the user's request and inspected repository
+     evidence. Choose its structure and wording for the target project; do not start from a
+     template, reference checklist, or fixed set of sections.
+   - Only after the independent first draft is complete, use the content review to check whether it
+     missed a category of project facts. If it reveals a gap, return to repository evidence and
+     write from that evidence; do not copy the review's structure or wording.
+   - Add skill-usage guidance only when this repository has a project-specific workflow for an
+     installed or project-owned skill. Add a project-memory section only when memory already exists
+     or the user explicitly requested it.
    - Tailor secrets guidance to the repository's actual risk surfaces while retaining the baseline
      prohibition on committing credentials, OAuth state, or machine-local configuration.
    - Omit generic rules already supplied by higher-scope instructions unless this repository needs
      a deliberate override or a project-specific version.
-   - Put refreshable Agent Toolbox guidance inside an `agent-toolbox` managed block.
+   - Add an `agent-toolbox` managed block only when the repository needs project-specific Agent
+     Toolbox guidance that should be refreshed later. Using this skill or the installed plugin is
+     not sufficient reason to add such a block.
    - Preserve existing project rules unless the user asks to replace them.
 
 4. Add project-owned memory only when explicitly requested.
@@ -58,11 +64,11 @@ and secrets in the right places.
 6. Verify the setup.
    - Run `git status --short --branch` and inspect the complete diff.
    - Map every new instruction to an explicit user request or inspected repository evidence. Remove
-     generic catalog entries, inherited duplicates, and placeholder headings that have no such
+     inherited duplicates, generic workflow advice, and placeholder headings that have no such
      basis.
-   - Confirm the result is not a wholesale or near-wholesale copy of the tailoring guide and that
-     its build, test, lint, release, privacy, and ownership statements use the target project's real
-     commands and paths when those topics apply.
+   - Confirm the result was independently generated rather than copied or adapted from the example,
+     and that any commands, paths, privacy boundaries, or ownership statements are real for the
+     target project.
    - If a submodule was explicitly requested, run `git submodule status` and inspect `.gitmodules`.
    - If the Agent Toolbox plugin package changed, run its skill and package validation commands.
    - Report installed or changed files, verification performed, and any client-specific reload or
@@ -74,14 +80,20 @@ Treat repeated runs as idempotent refreshes.
 
 1. Record whether `AGENTS.md`, `.gitmodules`, `.agents/skills/`, `.agent-memory/`, `learning/`, and
    relevant docs already exist.
-2. Edit only stale Agent Toolbox-owned content between `<!-- agent-toolbox:start -->` and
-   `<!-- agent-toolbox:end -->` when those markers exist. Preserve useful project-specific
-   tailoring inside the block; do not replace it with the full guide or candidate-rule catalog.
-3. If the markers are absent but a clear Agent Toolbox section exists, wrap and normalize only
-   that section. Otherwise add one managed block without rewriting project-specific rules.
-4. Stop and ask when existing instructions conflict with the managed block or local assets have an
-   unclear owner or external-upstream relationship.
-5. Re-read the result and confirm a second refresh would produce no diff.
+2. Re-evaluate the entire project instruction file against the current repository and user request.
+   Update stale project-specific commands, paths, boundaries, and ownership statements wherever
+   they appear, including outside any managed block. Preserve instructions that remain accurate and
+   avoid structure or wording churn that does not improve correctness.
+3. Treat `<!-- agent-toolbox:start -->` and `<!-- agent-toolbox:end -->` only as an ownership
+   boundary for project-specific Agent Toolbox workflow guidance. Refresh that content when the
+   markers exist, remove generic or inherited advice, and remove the markers when no owned content
+   remains.
+4. If the markers are absent but a clearly Agent Toolbox-owned, project-specific section exists,
+   wrap and normalize only that section. Otherwise do not add a managed block.
+5. Stop and ask when existing instructions conflict or when content, local assets, or an external
+   upstream have unclear ownership.
+6. Apply the content review to the refreshed draft, return to repository evidence for any gap it
+   exposes, then confirm a second refresh would produce no diff.
 
 ## Agent Toolbox Plugin Setup
 
@@ -107,10 +119,13 @@ Keep repository-specific reusable behavior local when it should not ship in the 
 Use a Git submodule only when the user explicitly asks to track an external upstream repository.
 If a submodule is needed, let Git create or update `.gitmodules` instead of editing it manually.
 
-## AGENTS.md Tailoring Guide
+## AGENTS.md Example and Content Review
 
-When the active client supports root `AGENTS.md` and the project needs one, read
-[the tailoring guide](references/agents-template.md) as a completeness check after drafting from
-repository evidence. It is a rule catalog, not a file template: select only applicable guidance and
-rewrite it around the target project's real structure and commands.
-Keep the managed block idempotent and preserve project-specific rules outside it.
+When the active client supports root `AGENTS.md` and the project needs one, generate it independently
+from the target repository. [The example](references/agents-example.md) is optional and illustrates
+only the level of project specificity a finished file can have. Do not use it as a template,
+starting point, checklist, section list, or source of wording.
+
+After the first draft is complete, use [the content review](references/agents-content-review.md) to
+check whether a category of project facts was missed. The review may trigger more repository
+inspection, but it must not determine the file's structure or wording.
