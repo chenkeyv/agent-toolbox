@@ -12,9 +12,12 @@ and secrets in the right places.
 
 1. Inspect the target repository before changing files.
    - Run `git status --short --branch`.
-   - Find existing guidance with `rg --files -g 'AGENTS.md' -g '.gitmodules' -g '.agents/**' -g '.agent-memory/**' -g 'learning/**' -g 'docs/**'`.
-   - Read the root `AGENTS.md`, `README.md`, `.gitignore`, `.gitmodules`, and existing skill or
-     memory files only when present and relevant.
+   - Identify the active client and its instruction precedence, supported filenames, and skill
+     directories. Use the scoped [configuration discovery](#configuration-discovery) below; include
+     applicable ancestor and nested guidance before editing the target files.
+   - Read discovered instructions, `README.md`, `.gitignore`, `.gitmodules`, and existing skill or
+     memory files only when present and relevant. Discovery lists paths; it does not authorize
+     reading secrets or changing client-local settings.
    - Preserve unrelated local changes.
 
 2. Choose the setup model.
@@ -29,12 +32,11 @@ and secrets in the right places.
 3. Add or update root project instructions.
    - Keep the active client's project instruction file concise and project-specific; use root
      `AGENTS.md` when the client supports it.
-   - Generate the instruction file freely from the user's request and inspected repository
-     evidence. Choose its structure and wording for the target project; do not start from a
-     template, reference checklist, or fixed set of sections.
-   - Only after the independent first draft is complete, use the content review to check whether it
-     missed a category of project facts. If it reveals a gap, return to repository evidence and
-     write from that evidence; do not copy the review's structure or wording.
+   - Draft from the user's request and current repository evidence; every project instruction must
+     have one of those as its basis. Choose the structure for the project. Examples do not prescribe
+     a structure, and review questions do not require adding content.
+   - After the independent first draft, use the [content review](references/agents-content-review.md)
+     to find omissions. Inspect repository evidence for any gap before adding an instruction.
    - Add skill-usage guidance only when this repository has a project-specific workflow for an
      installed or project-owned skill. Add a project-memory section only when memory already exists
      or the user explicitly requested it.
@@ -66,8 +68,7 @@ and secrets in the right places.
    - Map every new instruction to an explicit user request or inspected repository evidence. Remove
      inherited duplicates, generic workflow advice, and placeholder headings that have no such
      basis.
-   - Confirm the result was independently generated rather than copied or adapted from the example,
-     and that any commands, paths, privacy boundaries, or ownership statements are real for the
+   - Verify that commands, paths, privacy boundaries, and ownership statements are real for the
      target project.
    - If a submodule was explicitly requested, run `git submodule status` and inspect `.gitmodules`.
    - If the Agent Toolbox plugin package changed, run its skill and package validation commands.
@@ -78,8 +79,8 @@ and secrets in the right places.
 
 Treat repeated runs as idempotent refreshes.
 
-1. Record whether `AGENTS.md`, `.gitmodules`, `.agents/skills/`, `.agent-memory/`, `learning/`, and
-   relevant docs already exist.
+1. Record the client-specific instruction and skill paths found during configuration discovery,
+   plus existing `.gitmodules`, `.agent-memory/`, `learning/`, and relevant docs.
 2. Re-evaluate the entire project instruction file against the current repository and user request.
    Update stale project-specific commands, paths, boundaries, and ownership statements wherever
    they appear, including outside any managed block. Preserve instructions that remain accurate and
@@ -90,8 +91,10 @@ Treat repeated runs as idempotent refreshes.
    remains.
 4. If the markers are absent but a clearly Agent Toolbox-owned, project-specific section exists,
    wrap and normalize only that section. Otherwise do not add a managed block.
-5. Stop and ask when existing instructions conflict or when content, local assets, or an external
-   upstream have unclear ownership.
+5. Resolve conflicts using applicable instruction precedence, the current request, and repository
+   evidence. Continue unaffected read-only inspection. Ask only when an unresolved conflict or
+   unclear ownership changes permission to edit, risks losing work, or requires a user decision;
+   leave those dependent edits pending while completing authorized work.
 6. Apply the content review to the refreshed draft, return to repository evidence for any gap it
    exposes, then confirm a second refresh would produce no diff.
 
@@ -101,10 +104,41 @@ Prefer installing the repository root as an Agent Plugins 1.0 package over vendo
 skills. Installation, distribution, enablement, and update flows are client-specific, so follow the
 active client's Agent Plugins instructions and point it at the directory containing `plugin.json`.
 
-Do not add a Codex marketplace wrapper or `.codex-plugin` manifest merely to expose Agent Toolbox.
-Add client-specific packaging only when the user explicitly needs a capability outside the portable
-Agent Plugins format. After installing or updating, report any client-specific reload or new-task
-step required to load the bundled skills.
+Keep root `plugin.json` as the portable package. A target client's documented installation or
+distribution flow may also require a marketplace entry or client manifest even for portable skills.
+Add the smallest adapter justified by that target flow within the requested setup scope, and
+document its client, purpose, and validation. Avoid speculative adapters or duplicated skill sources.
+After installing or updating, report any client-specific reload or new-task step required.
+
+## Configuration Discovery
+
+From the repository root, list likely guidance while honoring ignore rules. Adjust the client
+patterns when the active runtime uses other documented paths.
+
+<!-- test:guidance-discovery -->
+```bash
+rg --files --hidden \
+  -g 'AGENTS.md' -g 'AGENTS.override.md' -g 'CLAUDE.md' -g 'CLAUDE.local.md' \
+  -g '.gitmodules' -g '**/.agents/**' -g '**/.claude/**' -g '**/.codex/**' \
+  -g '**/.agent-memory/**' -g 'learning/**' -g 'docs/**' \
+  -g '!**/.git' -g '!**/.git/**' -g '!**/node_modules/**' -g '!**/.venv/**'
+```
+
+Ignore rules can conceal existing local guidance. Inspect relevant ignored targets separately:
+pass only known instruction files or client configuration directories that exist, using
+`rg --files --hidden --no-ignore` with the same exclusions. For example, if `.claude/` exists:
+
+<!-- test:ignored-guidance-discovery -->
+```bash
+rg --files --hidden --no-ignore \
+  -g '!**/.git' -g '!**/.git/**' -g '!**/node_modules/**' -g '!**/.venv/**' .claude
+```
+
+Check applicable ancestor guidance outside the repository separately. Treat `rg` exit status 1 as
+no matches and other errors as incomplete discovery. Do not run an unrestricted hidden-file scan
+of the entire repository or follow symlinks into unrelated directories. For `AGENTS.override.md`,
+`CLAUDE.md`, `.claude/`, or other discovered guidance, verify the active client's loading and
+precedence rules instead of assuming every client loads every file.
 
 ## Project-Owned Skill Assets
 
@@ -121,11 +155,6 @@ If a submodule is needed, let Git create or update `.gitmodules` instead of edit
 
 ## AGENTS.md Example and Content Review
 
-When the active client supports root `AGENTS.md` and the project needs one, generate it independently
-from the target repository. [The example](references/agents-example.md) is optional and illustrates
-only the level of project specificity a finished file can have. Do not use it as a template,
-starting point, checklist, section list, or source of wording.
-
-After the first draft is complete, use [the content review](references/agents-content-review.md) to
-check whether a category of project facts was missed. The review may trigger more repository
-inspection, but it must not determine the file's structure or wording.
+[The optional example](references/agents-example.md) illustrates a finished file's project
+specificity. Use [the content review](references/agents-content-review.md) at the post-draft step
+above when creating or refreshing project instructions.

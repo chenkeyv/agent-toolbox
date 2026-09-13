@@ -22,5 +22,5 @@ to the skill instead of expanding `SKILL.md` unnecessarily.
 | --- | --- |
 | `audit-agent-assets` | Audit and modernize agent-facing assets for context efficiency and current model capabilities. |
 | `prevent-repeat` | Investigate missed behavior and apply durable prevention. |
-| `rename-master-to-main` | Safely migrate a Git repository default branch from `master` to `main`. |
-| `setup-agent-project` | Set up agent-ready repositories with evidence-driven instructions and whole-file refreshes. |
+| `rename-master-to-main` | Migrate `master` to `main` with verified history preservation and guarded cleanup. |
+| `setup-agent-project` | Discover client guidance and refresh evidence-driven project instructions idempotently. |

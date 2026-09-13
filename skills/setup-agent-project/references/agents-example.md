@@ -1,8 +1,7 @@
 # Example AGENTS.md
 
-This is an illustrative result for a fictional repository. It is not a template, base, checklist,
-or source of wording. Do not copy or adapt its sections. During setup, inspect the target repository
-and generate its instructions freely from the user's request and the repository itself.
+This illustrative result for a fictional repository shows project specificity. Follow the
+[setup workflow](../SKILL.md) to draft from the target project's evidence.
 
 ```md
 # Lantern Agent Instructions

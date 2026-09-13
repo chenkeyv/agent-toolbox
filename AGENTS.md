@@ -1,13 +1,14 @@
 # Repository Agent Instructions
 
-This repository is a private Agent Plugins 1.0 package for reusable skills, prompts, MCP examples,
+This repository is an Agent Plugins 1.0 package for reusable skills, prompts, MCP examples,
 and memory templates. The repository root is the plugin root.
 
 When changing this repo:
 
 - Keep the portable manifest at root `plugin.json` and target the published Agent Plugins schema.
-- Do not add a Codex marketplace wrapper or `.codex-plugin` manifest unless a client-specific
-  capability outside the portable format is intentionally introduced.
+- Keep client adapters optional. Add a marketplace entry or client manifest only when a target
+  client's documented installation, distribution, or runtime requirements justify it. Document
+  the target and validate the adapter without replacing root `plugin.json` or copying skills.
 - Keep the package skills-first. Do not add framework-neutral agent rosters, team
   indexes, or placeholder subagent scaffolding unless a runtime integration is
   intentionally introduced.

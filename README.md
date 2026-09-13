@@ -12,10 +12,12 @@ a focused skill.
 
 Follow the active client's Agent Plugins setup instructions and select this repository root as the
 plugin directory. Distribution, installation, enablement, and updates are client-specific rather
-than part of the portable specification. Because this is a private repository, the chosen client or
-local checkout must already have access to it.
+than part of the portable specification. A client may need a separate marketplace entry or manifest
+for its installation flow; add such an adapter only for a documented target requirement while
+keeping this portable package as the source of the skills.
 
 See [docs/setup.md](docs/setup.md) for package use and project-instruction guidance.
+See [tests/behavior/README.md](tests/behavior/README.md) for regression checks and agent evaluation.
 
 ## Layout
 
@@ -34,15 +36,15 @@ See [docs/setup.md](docs/setup.md) for package use and project-instruction guida
 | --- | --- |
 | `audit-agent-assets` | Audit and modernize agent-facing assets for context efficiency and current model capabilities. |
 | `prevent-repeat` | Investigate missed behavior and apply durable prevention. |
-| `rename-master-to-main` | Safely migrate a Git repository default branch from `master` to `main`. |
-| `setup-agent-project` | Set up agent-ready repositories with evidence-driven instructions and whole-file refreshes. |
+| `rename-master-to-main` | Migrate `master` to `main` with verified history preservation and guarded cleanup. |
+| `setup-agent-project` | Discover client guidance and refresh evidence-driven project instructions idempotently. |
 
 ## How To Use
 
 After installing the plugin, start a new task or chat and invoke the skill that matches the work.
 
 ```text
-Use $audit-agent-assets to review this repository's agent-facing assets and recommend a modern, context-efficient structure.
+Use $audit-agent-assets to review this repository's agent-facing assets and recommend changes only when the evidence supports them.
 ```
 
 ```text

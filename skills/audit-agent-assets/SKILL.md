@@ -101,15 +101,16 @@ performance per unit of context, not for the shortest possible text.
 
 ## Delivery
 
-Lead with the overall verdict and highest-leverage reconstruction. Then provide:
+Scale the delivery to the scope and the user's requested detail. By default, give the overall
+verdict, the most important findings with evidence and recommendations, and material uncertainties
+or skipped validation. State the coverage and capability baseline briefly when they affect the
+conclusion.
 
-- a coverage table listing the reviewed asset groups, audiences, and loading behavior;
-- prioritized findings with evidence, agent impact, and a concrete recommendation;
-- a capability-upgrade matrix classifying asset groups as current, modernize, replace or retire,
-  or conditional, with the capability baseline used for that judgment;
-- a reconstruction map showing what stays, moves, merges, splits, modernizes, or disappears;
-- constraints that must be preserved, uncertainties, exclusions, and skipped validation.
+For a broad audit or a requested full report, add the structures that help the reader assess it:
+a coverage table, a capability-upgrade matrix, or a reconstruction map. Do not require all three
+for a small review. Describe preserved constraints alongside the changes they constrain.
 
 Group one systemic finding across all affected files instead of repeating it per file. Avoid a
 false-precision aggregate score unless the user requests a comparison. If the corpus is already
-compact and effective, say so and recommend only changes whose benefit exceeds their churn.
+compact and effective, say so; no reconstruction is a valid outcome. Recommend only changes whose
+benefit exceeds their churn.

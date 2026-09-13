@@ -9,9 +9,13 @@ Use the active client's Agent Plugins installation flow and select the repositor
 directory containing `plugin.json` and `skills/`. Installation, distribution, enablement, and
 updates are intentionally client-specific in the Agent Plugins specification.
 
-Agent Toolbox does not require a Codex marketplace wrapper or `.codex-plugin` manifest. Add
-client-specific packaging only when a requested capability is outside the portable format. After
-installation, follow the client's reload or new-task guidance so the bundled skills are available.
+The portable package does not itself require a marketplace wrapper or `.codex-plugin` manifest.
+A target client's installation or distribution flow may require one even when the skills are
+portable. Add only the adapter justified by that client's current documentation and the requested
+setup, recording its target, purpose, and validation. Keep root `plugin.json` and `skills/` canonical
+instead of duplicating skill sources. After installation, follow the client's reload or new-task
+guidance so the bundled skills are available. Package validation alone does not verify installation
+in every client.
 
 ## Local Development Setup
 
@@ -21,15 +25,11 @@ client's development workflow.
 
 ## Project Instructions
 
-For projects that should use Agent Toolbox, inspect the target and generate its instructions freely
-from the repository's actual structure, commands, constraints, and the user's request. Do not base
-the result on a template or fixed section list. The optional
-[`AGENTS.md` example](../skills/setup-agent-project/references/agents-example.md) illustrates one
-possible finished result for a fictional project; it is not source material for the target file.
-After the independent first draft is complete, use the
-[`AGENTS.md` content review](../skills/setup-agent-project/references/agents-content-review.md) to
-check for omitted categories of project facts. Any addition must still be written from repository
-evidence, not copied from the review.
+Follow the setup skill's [evidence-driven drafting workflow](../skills/setup-agent-project/SKILL.md).
+The optional [`AGENTS.md` example](../skills/setup-agent-project/references/agents-example.md)
+illustrates a finished result; the
+[`content review](../skills/setup-agent-project/references/agents-content-review.md) checks the
+draft for omissions. Neither requires a particular structure or content.
 
 Use root `AGENTS.md` when the active client supports it; otherwise apply the same evidence-driven
 tailoring process to that client's project-instruction file.
@@ -42,8 +42,10 @@ ownership statements while preserving instructions that remain accurate.
 
 Use `<!-- agent-toolbox:start -->` and `<!-- agent-toolbox:end -->` only as an ownership boundary for
 project-specific Agent Toolbox workflow guidance. Do not add or retain a managed block merely
-because Agent Toolbox is installed or its setup skill was used; remove empty markers. Stop when
-ownership or an external-upstream relationship is unclear. Apply the post-draft content review and
+because Agent Toolbox is installed or its setup skill was used; remove empty markers. Resolve
+conflicts through applicable instruction precedence and current evidence. Continue unaffected
+inspection; pause dependent edits only when permission, ownership, or risk remains unresolved.
+Apply the post-draft content review and
 make a second refresh produce no diff.
 
 ## Use The Skills
