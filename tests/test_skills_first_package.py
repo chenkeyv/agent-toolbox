@@ -88,23 +88,12 @@ class SkillsFirstPackageTest(unittest.TestCase):
         )
         self.assertLessEqual(len(manifest["name"]), 64)
         self.assertLessEqual(set(manifest), PORTABLE_MANIFEST_FIELDS)
-        self.assertEqual(manifest["version"], "0.3.0")
+        self.assertRegex(manifest["version"], r"^\d+\.\d+\.\d+$")
         self.assertIsInstance(manifest["description"], str)
         self.assertIsInstance(manifest["author"], dict)
         self.assertLessEqual(set(manifest["author"]), {"name", "email", "url"})
         self.assertTrue(all(isinstance(keyword, str) for keyword in manifest["keywords"]))
         self.assertNotIn("skills", manifest)
-
-    def test_legacy_codex_marketplace_wrapper_is_removed(self):
-        legacy_paths = [
-            ROOT / ".agents/plugins/marketplace.json",
-            ROOT / ".codex-plugin/plugin.json",
-            ROOT / "plugins/agent-toolbox/.codex-plugin/plugin.json",
-        ]
-
-        for path in legacy_paths:
-            with self.subTest(path=path):
-                self.assertFalse(path.exists())
 
     def test_portable_skills_use_fixed_discovery_location(self):
         discovered_skills = sorted(

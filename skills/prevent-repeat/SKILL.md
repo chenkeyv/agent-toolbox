@@ -20,6 +20,8 @@ Do not stop at an apology or a promise.
 2. Locate the failure layer.
    - Check requirement clarity: was the expected behavior explicit, discoverable, and applicable?
    - Check instruction application: was the instruction loaded but missed or overridden?
+     If loading is not observable, keep both "not loaded" and "loaded but not followed" as possible
+     explanations rather than treating either as a confirmed cause.
    - Check routing: should a skill, app, connector, or specialist workflow have triggered?
    - Check sequencing: was a safe or required step attempted too late?
    - Check execution: did sandboxing, permissions, credentials, tools, or external state differ from
